@@ -7,10 +7,10 @@ import re
 
 
 
-def fala_cartola(mensagem):
-    cartola_voz=voz.init()
-    cartola_voz.say(mensagem)
-    cartola_voz.runAndWait()
+def resposta(mensagem):
+    voz=voz.init()
+    voz.say(mensagem)
+   voz.runAndWait()
 
 def ouvindo():
 
@@ -28,7 +28,7 @@ def ouvindo():
                 return comando_voz
             
             except sr.UnknownValueError:#caso aconteça algum erro
-                fala_cartola("Não entendi, repita por favor")
+                resposta("Não entendi, repita por favor")
 
 def verifica_comando(comando_mensagem):
 
@@ -56,8 +56,8 @@ def verifica_comando(comando_mensagem):
         
         elif comando_cortado=="fechar":
             for i in comandos:
-                if i=="Cartola" or i=="cartola":
-                    comando="fechar cartola"
+                if i=="Fim" or i=="fim":
+                    comando="fechar"
             
        
             
@@ -68,23 +68,23 @@ def executa_comando(comando):
 
 
         if comando=="desligar":
-            fala_cartola("Desligando")
+            resposta("Desligando")
             os.system("shutdown /s")
 
         elif comando=="reiniciar":
-            fala_cartola("Reiniciando")
+           resposta("Reiniciando")
             os.system("shutdown /r /t 1")
 
         elif comando=="suspender":
-            fala_cartola("Suspendendo")
+            resposta("Suspendendo")
             os.system("shutdown /h")
 
-        elif comando=="fechar cartola":
-            fala_cartola("Bye Bye")
+        elif comando=="fechar":
+            resposta("Bye Bye")
             sys.exit()
 
         
-fala_cartola("Estou te ouvindo")
+resposta("Estou te ouvindo")
 
 while True:
     comando=ouvindo()
